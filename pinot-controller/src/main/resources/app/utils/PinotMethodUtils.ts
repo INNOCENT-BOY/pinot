@@ -67,7 +67,12 @@ import {
   getState,
   getInfo,
   authenticateUser,
-  getSegmentDebugInfo
+  getSegmentDebugInfo,
+  requestTable,
+  requestUserList,
+  requestAddUser,
+  requestDeleteUser,
+  requestUpdateUser
 } from '../requests';
 import { baseApi } from './axios-config';
 import Utils from './Utils';
@@ -851,6 +856,36 @@ const getAccessTokenFromHashParams = () => {
   return accessToken;
 };
 
+const getTable = ()=>{
+  return requestTable().then(response=>{
+    return response.data;
+  })
+};
+
+const getUserList = ()=>{
+  return requestUserList().then(response=>{
+    return response.data;
+  })
+};
+
+const addUser = (userObject)=>{
+  return requestAddUser(userObject).then(response=>{
+    return response.data;
+  })
+};
+
+const deleteUser = (userObject)=>{
+  return requestDeleteUser(userObject).then(response=>{
+    return response.data;
+  })
+};
+
+const updateUser = (userObject) =>{
+  return requestUpdateUser(userObject).then(response=>{
+    return response.data;
+  })
+};
+
 export default {
   getTenantsData,
   getAllInstances,
@@ -903,5 +938,10 @@ export default {
   getAuthInfo,
   getWellKnownOpenIdConfiguration,
   verifyAuth,
-  getAccessTokenFromHashParams
+  getAccessTokenFromHashParams,
+  getTable,
+  getUserList,
+  addUser,
+  deleteUser,
+  updateUser
 };
