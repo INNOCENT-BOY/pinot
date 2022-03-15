@@ -22,14 +22,6 @@ import React, {useEffect, useState} from 'react';
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Dialog, DialogActions, Snackbar, DialogTitle} from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
-
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/sql/sql';
-import 'codemirror/addon/hint/show-hint';
-import 'codemirror/addon/hint/sql-hint';
-import 'codemirror/addon/hint/show-hint.css';
 import PinotMethodUtils from '../utils/PinotMethodUtils';
 import '../styles/styles.css';
 import AddUser from "../components/User/AddUser";

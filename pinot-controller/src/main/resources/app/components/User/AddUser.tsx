@@ -32,6 +32,7 @@ import {
 } from '@material-ui/core';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import {cloneDeep} from "lodash";
 type Props = {
   tableList: Array<{
     name: string,
@@ -69,7 +70,7 @@ export default function AddUser({
   };
   const changeHandler = (field, e)=>{
     let val = e.target.value;
-    let userCopy = {...user};
+    let userCopy = cloneDeep(user);
     switch (field) {
       case 'username':
         userCopy.username = val;
@@ -94,7 +95,7 @@ export default function AddUser({
     let name = event.target.name;
     let checked = event.target.checked;
     if(name){
-      let table = [...tables];
+      let table = cloneDeep(tables);
       if(name === 'ALL' && checked === true){
         table = table.map(item =>{
           return {

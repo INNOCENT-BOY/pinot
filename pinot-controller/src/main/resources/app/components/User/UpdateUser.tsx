@@ -31,7 +31,7 @@ import {
 } from '@material-ui/core';
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-
+import {cloneDeep} from "lodash";
 type Props = {
   tableList: Array<{
     name: string,
@@ -73,7 +73,7 @@ export default function UpdateUser({
   };
   const changeHandler = (field, e)=>{
     let val = e.target.value;
-    let userCopy = {...user};
+    let userCopy = cloneDeep(user);
     switch (field) {
       case 'username':
         userCopy.username = val;
@@ -99,13 +99,14 @@ export default function UpdateUser({
     let name = event.target.name;
     let checked = event.target.checked;
     if(name){
-      let table = [...tables];
+      let table = cloneDeep(tables);
+      console.log("table: ", table);
       if(name === 'ALL' && checked === true){
         table = table.map(item =>{
           return {
             ...item,
             checked: item.name === 'ALL',
-            disabled: item.name === 'ALL'
+            disabled: item.name !== 'ALL'
           }
         })
       } else if(name === 'ALL' && checked === false){
@@ -139,7 +140,6 @@ export default function UpdateUser({
       setUserInfo(newUser);
     }
   }
-
 
   const menuItemStyle = {
     fontSize: '16px',
