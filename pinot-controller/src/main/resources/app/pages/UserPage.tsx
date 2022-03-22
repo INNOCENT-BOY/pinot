@@ -46,6 +46,7 @@ const columns = [
     { id: 'Tables', label: 'Tables'},
     { id: 'Actions', label: 'Actions'}
 ];
+let oldPassword = "";
 const UserPage = () => {
     const [userList, setUserList] = useState([]);
     const [addUserPanel, setAddUserPanel] = useState(false);
@@ -154,6 +155,7 @@ const UserPage = () => {
     }
 
     const clickEditUser = (row)=>{
+        oldPassword = row.password;
         updateUserInfo(row);
         setUpdateUserPanel(true);
     }
@@ -167,6 +169,8 @@ const UserPage = () => {
         if(updateUserParam.tables.includes('ALL')){
             delete updateUserParam.tables
         }
+        let passwordChanged = updateUserParam.password !== oldPassword ? true: false;
+        Object.assign(updateUserParam, {passwordChanged});
         const updateUserResponse = await PinotMethodUtils.updateUser(updateUserParam);
         if(updateUserResponse.code && updateUserResponse.code !== 200){
             setShowError(true);
