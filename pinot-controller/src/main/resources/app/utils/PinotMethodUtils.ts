@@ -880,8 +880,8 @@ const deleteUser = (userObject)=>{
   })
 };
 
-const updateUser = (userObject) =>{
-  return requestUpdateUser(userObject).then(response=>{
+const updateUser = (userObject, passwordChanged) =>{
+  return requestUpdateUser(userObject, passwordChanged).then(response=>{
     return response.data;
   })
 };

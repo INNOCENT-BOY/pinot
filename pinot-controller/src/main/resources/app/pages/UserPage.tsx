@@ -169,9 +169,8 @@ const UserPage = () => {
         if(updateUserParam.tables.includes('ALL')){
             delete updateUserParam.tables
         }
-        let passwordChanged = updateUserParam.password !== oldPassword ? true: false;
-        Object.assign(updateUserParam, {passwordChanged});
-        const updateUserResponse = await PinotMethodUtils.updateUser(updateUserParam);
+        const passwordChanged = updateUserParam.password !== oldPassword ? true: false;
+        const updateUserResponse = await PinotMethodUtils.updateUser(updateUserParam, passwordChanged);
         if(updateUserResponse.code && updateUserResponse.code !== 200){
             setShowError(true);
             setErrorTip(updateUserResponse.error);

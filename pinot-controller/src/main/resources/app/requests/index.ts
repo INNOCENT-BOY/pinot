@@ -186,5 +186,5 @@ export const requestAddUser = (userObject: UserObject): Promise<AxiosResponse<an
 export const requestDeleteUser = (userObject: UserObject): Promise<AxiosResponse<any>> =>
     baseApi.delete(`/users/${userObject.username}?component=${userObject.component}`);
 
-export const requestUpdateUser = (userObject: UserObject): Promise<AxiosResponse<any>> =>
-    baseApi.put(`/users/${userObject.username}?component=${userObject.component}`, JSON.stringify(userObject), {headers});
+export const requestUpdateUser = (userObject: UserObject, passwordChanged: boolean): Promise<AxiosResponse<any>> =>
+    baseApi.put(`/users/${userObject.username}?component=${userObject.component}&passwordChanged=${passwordChanged}`, JSON.stringify(userObject), {headers});
